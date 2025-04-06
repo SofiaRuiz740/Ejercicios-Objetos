@@ -16,7 +16,7 @@ const mostrarProductos = () => {
   let lista = "🎁 ACCESORIOS DISPONIBLES:\n";
   let i = 1;
   productos.forEach((valor, clave) => {
-    lista += `${i++}. ${clave.toUpperCase()} - 💲${valor.precio} (Stock: ${valor.stock})\n`;
+    lista += `${i++}. ${clave.toUpperCase()} 💲${valor.precio} (Stock: ${valor.stock})\n`;
   });
   alert(lista);
 };

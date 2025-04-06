@@ -43,8 +43,8 @@ const registrar = () => {
 
     // Pregunta si desea transferir la asesoría a llamada
     const respuesta = parseInt(prompt("¿Deseas transferir esta asesoría a una llamada telefónica?\n 1.si\n 2.no\n"));
-    if (respuesta==1 || respuesta==2) {
-      transferido = true;
+    if (respuesta === 1) {
+     transferido = true; // Solo si respondió que sí
     }
   }
 

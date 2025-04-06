@@ -1,55 +1,48 @@
 // ♡♡♡♡ EJERCICIO 2: Sistema de gestión de turnos para un banco ♡♡♡♡ 
 
-const cola = []; // Array para almacenar los turnos en espera
-let contador = 0; // Contador total de turnos
+const cola = []; // Arreglo que guarda los números de turnos (solo el número, no un objeto)
+let contador = 0; // Lleva la cuenta de cuántos turnos se han entregado
 
-// Función flecha para tomar un nuevo turno
+// Toma un nuevo turno y lo agrega a la cola
 const tomarTurno = () => {
   contador++; // Aumentamos el contador
-
-  // Creamos el turno como objeto
-  const nuevoTurno = {
-    numero: `T-${contador}`,
-    atendido: false
-  };
-
-  // push() para agregar al final de la cola
-  cola.push(nuevoTurno);
-
-  alert(`✅ Turno asignado: ${nuevoTurno.numero}`);
+  const turno = `T-${contador}`; // Creamos un turno como texto
+  cola.push(turno); // Lo metemos en la cola
+  alert(`✅ Turno asignado: ${turno}`);
 };
 
-// Función flecha para llamar al siguiente cliente
+// Llama al siguiente cliente en la cola
 const llamarCliente = () => {
   if (cola.length === 0) {
     alert("⚠️ No hay clientes en espera.");
     return;
   }
 
-  // shift() para sacar el primero de la cola
-  const siguiente = cola.shift();
-  siguiente.atendido = true;
-
-  alert(`📢 Cliente con turno ${siguiente.numero}, pase a la ventanilla.`);
+  const turnoLlamado = cola.shift(); // Sacamos el primer turno de la cola
+  alert(`📢 Cliente con turno ${turnoLlamado}, pase a la ventanilla.`);
 };
 
-// Función flecha para mostrar la cola de espera
+// Muestra todos los turnos que están en espera
 const mostrarCola = () => {
-  const enEspera = cola.map((turno, index) => `#${index + 1}: ${turno.numero}`);
+  if (cola.length === 0) {
+    alert("✅ No hay turnos en espera.");
+    return;
+  }
 
-  const mensaje = enEspera.length > 0
-    ? `📋 Turnos en espera:\n${enEspera.join("\n")}`
-    : "✅ No hay turnos en espera.";
+  let mensaje = "📋 Turnos en espera:\n";
+  cola.forEach((turno, i) => {
+    mensaje += `#${i + 1}: ${turno}\n`;
+  });
 
   alert(mensaje);
 };
 
-// Función flecha para mostrar la cantidad de turnos tomados
+// Muestra el total de turnos que se han generado
 const mostrarContador = () => {
   alert(`📊 Turnos generados hasta ahora: ${contador}`);
 };
 
-// Menú principal con do...while, prompt, alert, switch
+// Menú principal con do...while y switch
 const menu = () => {
   let opcion;
 
@@ -80,8 +73,9 @@ const menu = () => {
   } while (opcion !== "5");
 };
 
-// Ejecutamos el menú
+// Iniciamos el programa
 menu();
+
 
 
 
